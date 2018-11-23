@@ -20,11 +20,14 @@ titanic_train.info()
 
 titanic_train.describe()
 
+titanic_train['Age'].fillna(0,inplace=True)
+# to fill null values with 0
+###if it is string use fillna('0',inplace=True)
+
 titanic_train['Age']=titanic_train['Age'].mean()
 
 X=titanic_train[['Pclass', 'SibSp', 'Parch']]
 Y=titanic_train['Survived']
-
 
 
 dt=tree.DecisionTreeClassifier(criterion = 'gini')
@@ -44,4 +47,3 @@ actual=np.array(titanic_train['Survived'])
 predicted=np.array(titanic_test['Survived'])
 
 confusion_matrix(actual,predicted)
-#got 57% accuracy
